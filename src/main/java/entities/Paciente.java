@@ -5,8 +5,7 @@ public class Paciente {
     private int telefono;
     private String nombre;
 
-    public Paciente(int nroPaciente, int telefono, String nombre) {
-        this.nroPaciente = nroPaciente;
+    public Paciente(int telefono, String nombre) {
         this.telefono = telefono;
         this.nombre = nombre;
     }
@@ -16,6 +15,14 @@ public class Paciente {
     public void setTelefono(int telefono) {this.telefono = telefono;}
 
     public String getNombre() {return nombre;}
+
+    public int getNroPaciente() {
+        return nroPaciente;
+    }
+
+    public void setNroPaciente(int nroPaciente) {
+        this.nroPaciente = nroPaciente;
+    }
 
     public void setNombre(String nombre) {this.nombre = nombre;}
 }

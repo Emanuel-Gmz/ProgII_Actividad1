@@ -8,6 +8,15 @@ public class Turno {
     private Time hora;
     private int nroConsultorio;
     private int nroPaciente;
+    private int id_turno;
+
+    public int getId_turno() {
+        return id_turno;
+    }
+
+    public void setId_turno(int id_turno) {
+        this.id_turno = id_turno;
+    }
 
     public Turno(Date dia, Time hora, int nroConsultorio, int nroPaciente) {
         this.dia = dia;
