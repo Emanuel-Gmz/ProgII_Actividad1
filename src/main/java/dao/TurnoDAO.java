@@ -18,6 +18,7 @@ public class TurnoDAO implements AdmConexion, DAO<Turno, Integer> {
     private static final String SQL_GETALL = "SELECT * FROM Turno ORDER BY dia ASC, hora ASC";
     private static final String SQL_GETBYID = "SELECT * FROM Turno WHERE id_turno = ?";
     private static final String SQL_EXISTSBYID = "SELECT * FROM Turno WHERE id_turno = ?";
+    private static final String SQL_DELETEDIA = "DELETE FROM Turno WHERE nroConsultorio = ? AND dia = ?";
 
     @Override
     public Connection obtenerConexion() {
@@ -96,7 +97,6 @@ public class TurnoDAO implements AdmConexion, DAO<Turno, Integer> {
 
                 java.sql.Date fechaSQL = new java.sql.Date(objeto.getDia().getTime());
                 pst.setDate(1, fechaSQL);
-
                 pst.setTime(2, objeto.getHora());
                 pst.setInt(3, objeto.getNroConsultorio());
                 pst.setInt(4, objeto.getNroPaciente());
@@ -134,6 +134,25 @@ public class TurnoDAO implements AdmConexion, DAO<Turno, Integer> {
             } else {
                 System.out.println("No se pudo eliminar el turno.");
             }
+
+            pst.close();
+            conn.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void cancelarTurnos(int nroConsultorio, java.util.Date fechaPintura) {
+        conn = obtenerConexion();
+        PreparedStatement pst = null;
+        try {
+            pst = conn.prepareStatement(SQL_DELETEDIA);
+            pst.setInt(1, nroConsultorio);
+            java.sql.Date fechaSQL = new java.sql.Date(fechaPintura.getTime());
+            pst.setDate(2, fechaSQL);
+
+            int turnosCancelados = pst.executeUpdate();
+            System.out.println("Se cancelaron " + turnosCancelados + " turnos en el consultorio " + nroConsultorio);
 
             pst.close();
             conn.close();

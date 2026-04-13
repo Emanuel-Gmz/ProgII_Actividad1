@@ -25,4 +25,13 @@ public class Paciente {
     }
 
     public void setNombre(String nombre) {this.nombre = nombre;}
+
+    @Override
+    public String toString() {
+        return "Paciente{" +
+                "nroPaciente=" + nroPaciente +
+                ", telefono=" + telefono +
+                ", nombre='" + nombre + '\'' +
+                '}';
+    }
 }

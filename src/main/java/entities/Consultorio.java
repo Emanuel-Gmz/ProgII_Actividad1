@@ -1,6 +1,7 @@
 package entities;
 
 import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,6 +23,13 @@ public class Consultorio {
         this.turnos.add(nuevoTurno);
     }
 
+    public void cancelarTurnos(Date fechaPintura) {
+        if (this.turnos != null) {
+            this.turnos.removeIf(turno -> esMismoDia(turno.getDia(), fechaPintura));
+            System.out.println("Turnos cancelados en la fecha indicada.");
+        }
+    }
+
     public int getNroConsultorio() {
         return nroConsultorio;
     }
@@ -36,5 +44,22 @@ public class Consultorio {
 
     public void setMedico(String medico) {
         this.medico = medico;
+    }
+
+    @Override
+    public String toString() {
+        return "Consultorio{" +
+                "nroConsultorio=" + nroConsultorio +
+                ", medico='" + medico + '\'' +
+                ", turnos=" + turnos +
+                '}';
+    }
+
+    private boolean esMismoDia(Date dia1, Date dia2) {
+        if (dia1 == null || dia2 == null) {
+            return false;
+        }
+        SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
+        return fmt.format(dia1).equals(fmt.format(dia2));
     }
 }

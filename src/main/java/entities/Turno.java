@@ -25,7 +25,6 @@ public class Turno {
         this.nroPaciente = nroPaciente;
     }
 
-
     public Date getDia() {return dia;}
 
     public void setDia(Date dia) {this.dia = dia;}
@@ -37,4 +36,15 @@ public class Turno {
     public void setNroConsultorio(int nroConsultorio) {this.nroConsultorio = nroConsultorio;}
 
     public int getNroPaciente() {return nroPaciente;}
+
+    @Override
+    public String toString() {
+        return "Turno{" +
+                "dia=" + dia +
+                ", hora=" + hora +
+                ", nroConsultorio=" + nroConsultorio +
+                ", nroPaciente=" + nroPaciente +
+                ", id_turno=" + id_turno +
+                '}';
+    }
 }

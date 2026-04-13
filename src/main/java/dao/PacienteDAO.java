@@ -3,7 +3,6 @@ package dao;
 import entities.Paciente;
 import interfaces.AdmConexion;
 import interfaces.DAO;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

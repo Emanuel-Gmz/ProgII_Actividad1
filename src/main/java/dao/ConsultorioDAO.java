@@ -1,10 +1,8 @@
 package dao;
 
-import com.mysql.cj.protocol.Resultset;
 import entities.Consultorio;
 import interfaces.AdmConexion;
 import interfaces.DAO;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,12 +12,8 @@ import java.util.List;
 public class ConsultorioDAO implements AdmConexion,DAO<Consultorio,Integer>{
     private Connection conn = obtenerConexion();
 
-    private static String SQL_INSERT =
-            "INSERT INTO Consultorio (nroConsultorio, medico) " +
-                    " VALUES (?, ?)";
-
+    private static String SQL_INSERT = "INSERT INTO Consultorio (nroConsultorio, medico) " + " VALUES (?, ?)";
     private static String SQL_UPDATE = "UPDATE Consultorio SET medico = ? WHERE nroConsultorio = ?";
-
     private static String SQL_DELETE = "DELETE FROM Consultorio WHERE nroConsultorio = ?";
     private static String SQL_GETALL = "SELECT * FROM Consultorio ORDER BY nroConsultorio ASC";
     private static String SQL_GETBYID = "SELECT * FROM Consultorio WHERE nroConsultorio = ?";
@@ -35,7 +29,6 @@ public class ConsultorioDAO implements AdmConexion,DAO<Consultorio,Integer>{
         conn = obtenerConexion();
         PreparedStatement pst = null;
         ResultSet rs = null;
-
         List<Consultorio> lista = new ArrayList<>();
         try{
             pst = conn.prepareStatement(SQL_GETALL);
@@ -45,7 +38,6 @@ public class ConsultorioDAO implements AdmConexion,DAO<Consultorio,Integer>{
                 Consultorio consultorio = new Consultorio(rs.getInt("nroConsultorio"),rs.getString("medico"));
                 consultorio.setNroConsultorio(rs.getInt("nroConsultorio"));
                 consultorio.setMedico(rs.getString("medico"));
-
                 lista.add(consultorio);
             }
 
